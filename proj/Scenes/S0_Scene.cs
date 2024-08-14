@@ -14,7 +14,7 @@ namespace TextRPG.Scenes
 
 
         // 생성자 - game에 입력받은 Game클래스형 game을 대입해주기
-        public S0_Scene(Game _game)
+        public S0_Scene(Game _game) 
         {
             this.game = _game;
         }

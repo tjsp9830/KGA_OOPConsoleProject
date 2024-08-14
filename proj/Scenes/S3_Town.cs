@@ -56,7 +56,7 @@ namespace TextRPG.Scenes
             Console.WriteLine("2. 상점으로 이동하기");
             Console.WriteLine("3. 훈련장으로 이동하기");
 
-            Console.Write("선택 :");
+            Console.Write("선택 : ");
 
         }
 

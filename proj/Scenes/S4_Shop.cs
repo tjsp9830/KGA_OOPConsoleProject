@@ -50,6 +50,7 @@ namespace TextRPG.Scenes
         {
             // 상점 업데이트() 구현 필요
             Thread.Sleep(2000);
+            game.SceneChanger(SceneType.Town);
 
         }
 

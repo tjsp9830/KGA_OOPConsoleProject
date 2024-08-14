@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TextRPG.Monsters;
 using TextRPG.Players;
 using TextRPG.Scenes;
 // 플레이어 클래스 using
@@ -25,8 +26,13 @@ namespace TextRPG
 
 
         // 클래스형 플레이어(게터세터)
-        private P0_Player player;
+        public P0_Player player;
         public P0_Player Player { get { return player; }  set { player = value; } }
+
+
+        // 클래스형 몬스터(게터세터) ---> 몬스터 종류 여러개로 늘린 후에는 배열 형태로 바꾸기
+        private M0_Monster monster;
+        public M0_Monster Monster { get { return monster; }  set { monster = value; } }
 
 
 
