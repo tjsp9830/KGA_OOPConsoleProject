@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TextRPG.Monsters
 {
-    internal class Orc
+    internal class M1_Orc : M0_Monster
     {
 
 

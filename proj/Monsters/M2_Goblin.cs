@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TextRPG.Monsters
 {
-    internal class Goblin
+    internal class M2_Goblin : M0_Monster
     {
+
+
+
     }
+
 }
