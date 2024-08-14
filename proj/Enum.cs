@@ -12,7 +12,7 @@ namespace TextRPG
     public enum SceneType { Title, Select, Town, Shop, Inventory, Battle, GameOver, SIZE };
 
     // 사용될 플레이어 클래스의 유형
-    public enum Job { Warrior, Mage, Rogue, Archor, SIZE };
+    public enum Job { Warrior=1, Mage, Rogue, Archor, SIZE };
 
         
 }

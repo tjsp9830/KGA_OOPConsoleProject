@@ -49,12 +49,13 @@ namespace TextRPG.Players
         {
             Console.SetCursorPosition(0, 0);
             Console.WriteLine("==========================================");
+            Console.WriteLine("                현재 정보");
             Console.WriteLine($" 이름 : {name,-6} 직업 : {job,-6}");
             Console.WriteLine($" 체력 : {curHP,+3} / {maxHP}  공격 : {power,-3} / 방어 : {defense,-3}");
             Console.WriteLine($" 골드 : {gold,+5} G");
             Console.WriteLine("==========================================");
             Console.WriteLine();
-            Console.SetCursorPosition(0, 0);
+            Console.SetCursorPosition(0, 7);
 
         }
 

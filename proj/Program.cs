@@ -5,7 +5,8 @@
         static void Main(string[] args)
         {
             // 게임 가동하기
-            Console.WriteLine("Hello, World!");
+            Game game = new Game();
+            game.Run();
         }
     }
 }
