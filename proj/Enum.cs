@@ -10,10 +10,10 @@ namespace TextRPG
     internal class Enum
     {
         // 사용될 씬 클래스의 유형
-        enum SceneType { };
+        public enum SceneType { Title, Select, Town, Shop, Inventory, Battle, GameOver, SIZE };
 
         // 사용될 플레이어 클래스의 유형
-        enum Job { Warrior, Mage, Rogue, Archor, SIZE };
+        public enum Job { Warrior, Mage, Rogue, Archor, SIZE };
 
 
     }
