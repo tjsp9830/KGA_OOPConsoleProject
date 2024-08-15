@@ -20,7 +20,7 @@ namespace TextRPG.Players
             this.maxHP = curHP;
             this.power = 30;
             this.defense = 30;
-            this.gold = 0;
+            this.gold = 100;
             this.skillName = "\"검 휘두르기\"";
         }
 

@@ -5,77 +5,14 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using TextRPG.Players;
+using TextRPG.Items;
 
 // 실제 RPG게임에서처럼,
 // 아이템이 들어오는 순서는 맨 앞부터이나, (맨 위의 맨 왼쪽부터)
 // 아이템 위치를 사용자가 원하는 순서로 뒤바꿀 수 있도록 구현해 보았습니다.
 namespace TextRPG.Scenes
 {
-    public class Item
-    {
-        public string name;
-        public Item(string _name)
-        {
-            name = _name;
-        }
-
-
-    }
-
-
-    public class Inventory
-    {
-        List<Item> items;
-
-        public int itemCount => items.Count;
-
-        public Inventory()
-        {
-            items = new List<Item>(10);
-        }
-
-        public void ShowInventory()
-        {
-
-            if (items.Count == 0)
-            {
-                Console.WriteLine("현재 인벤토리가 비어있습니다.");
-            }
-            else
-            {
-                Console.WriteLine("------- 현재 인벤토리 -------");
-
-                for (int i = 0; i < items.Count; i++)
-                {
-                    Console.WriteLine($" {i + 1}. {items[i].name}");
-                }
-            }
-            Console.WriteLine("==========================");
-            Console.WriteLine();
-        }
-
-        public bool UpdateItem(Item _item)
-        {
-            if (items.Count == 10)
-                return false;
-
-            items.Add(_item);
-            return true;
-        }
-
-        public bool RemoveItem(int _index)
-        {
-            if (items.Count <= _index)
-                return false;
-
-            items.RemoveAt(_index);
-            return true;
-        }
-
-
-    }
-
-
+    
     internal class S5_Inventory : S0_Scene
     {
         // 필드 - 입력값, 인벤토리, 상태  (인벤구조: 배열or리스트or딕셔너리)
@@ -215,4 +152,6 @@ namespace TextRPG.Scenes
 
 
     }
+
+
 }
