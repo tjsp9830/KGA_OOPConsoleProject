@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using TextRPG.Monsters;
@@ -20,15 +21,7 @@ namespace TextRPG.Players
             this.power = 30;
             this.defense = 30;
             this.gold = 0;
-        }
-
-        public override void Skill(M0_Monster monster)
-        {
-            
-            // 변경해주기
-            Console.WriteLine("검 휘두르기");
-            
-            
+            this.skillName = "\"검 휘두르기\"";
         }
 
 

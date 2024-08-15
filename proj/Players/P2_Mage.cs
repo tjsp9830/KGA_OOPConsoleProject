@@ -20,16 +20,9 @@ namespace TextRPG.Players
             this.power = 50;
             this.defense = 10;
             this.gold = 0;
+            this.skillName = "\"파이어볼\"";
 
         }
 
-        public override void Skill(M0_Monster monster)
-        {
-
-            // 변경해주기
-            Console.WriteLine("파이어볼");
-
-
-        }
     }
 }

@@ -20,17 +20,10 @@ namespace TextRPG.Players
             this.power = 30;
             this.defense = 40;
             this.gold = 0;
+            this.skillName = "\"폭풍의 화살\"";
 
         }
 
-        public override void Skill(M0_Monster monster)
-        {
-
-            // 변경해주기
-            Console.WriteLine("폭풍의 화살");
-
-
-        }
 
     }
 }

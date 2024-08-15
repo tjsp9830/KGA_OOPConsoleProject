@@ -18,11 +18,7 @@ namespace TextRPG.Monsters
             this.power = 70;
             this.defense = 0;
             this.gold = 300;
-        }
-
-        public override void Skill(P0_Player player)
-        {
-            Console.WriteLine("녹여버리기!!");
+            this.skillName = "\"녹여버리기!!\"";
         }
 
     }

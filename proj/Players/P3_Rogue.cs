@@ -20,17 +20,10 @@ namespace TextRPG.Players
             this.power = 40;
             this.defense = 20;
             this.gold = 0;
+            this.skillName = "\"암살\"";
 
         }
 
-        public override void Skill(M0_Monster monster)
-        {
-
-            // 변경해주기
-            Console.WriteLine("암살");
-
-
-        }
 
     }
 }

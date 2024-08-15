@@ -17,12 +17,9 @@ namespace TextRPG.Monsters
             this.power = 35;
             this.defense = 15;
             this.gold = 50;
+            this.skillName = "\"아프게때리기!!\"";
         }
 
-        public override void Skill(P0_Player player)
-        {
-            Console.WriteLine("아프게때리기!!");
-        }
 
 
     }

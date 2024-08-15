@@ -18,11 +18,7 @@ namespace TextRPG.Monsters
             this.power = 50;
             this.defense = 20;
             this.gold = 150;
-        }
-
-        public override void Skill(P0_Player player)
-        {
-            Console.WriteLine("인중에 화살 맞추기!!");
+            this.skillName = "\"인중에 화살 맞추기!!\"";
         }
 
 

@@ -17,12 +17,6 @@ namespace TextRPG.Scenes
         private State curState;
         string input;
 
-        // Help)
-        // 초기화를 시도하였으나, 필드에서는 선언을 못하고
-        // 생성자나 함수에서 초기화하면 지역변수라서 사용을 못합니다ㅠㅠ
-        // 그래서 Scene에 있는 protected Game game을 static선언해서 사용중인데 그래도 괜찮나요?
-        P0_Player player;
-        M0_Monster monster;
 
 
         // 생성자 - 기존 
@@ -58,7 +52,13 @@ namespace TextRPG.Scenes
 
         public override void Render()
         {
+
+            P0_Player player = game.Player;
+            M0_Monster monster = game.Monster;
+
+
             Console.Clear();
+
 
             // 예외1 = 플레이어 이김
             if (curState == State.Win)
@@ -115,7 +115,7 @@ namespace TextRPG.Scenes
                 Thread.Sleep(1000);
 
                 Console.SetCursorPosition(0, 6);
-                Console.WriteLine($"{game.Monster.Skill}");
+                Console.WriteLine($"{game.Monster.Skill(player)}");
                 Console.WriteLine("몬스터가 당신을 공격했다...");
                 Thread.Sleep(1000);
                                 
@@ -124,12 +124,12 @@ namespace TextRPG.Scenes
             else if (curState == State.Attack)
             {
                 Console.SetCursorPosition(0, 3);
-                Console.WriteLine($"{game.Player.Skill}");
+                Console.WriteLine($"{game.Player.Skill(monster)}");
                 Console.WriteLine("당신은 몬스터를 공격했다.");
                 Thread.Sleep(1000);
 
                 Console.SetCursorPosition(0, 6);
-                Console.WriteLine($"{game.Monster.Skill}");
+                Console.WriteLine($"{game.Monster.Skill(player)}");
                 Console.WriteLine("몬스터도 당신을 공격했다...");
                 Thread.Sleep(1000);
 
@@ -138,7 +138,7 @@ namespace TextRPG.Scenes
             else if (curState == State.Defense)
             {                
                 Console.SetCursorPosition(0, 3);
-                Console.WriteLine($"{game.Monster.Skill}");
+                Console.WriteLine($"{game.Monster.Skill(player)}");
                 Console.WriteLine("몬스터가 당신을 공격했다.");
                 Thread.Sleep(1000);
 
@@ -229,21 +229,21 @@ namespace TextRPG.Scenes
             if(input == "1")
             {
                 //플레이어만 맞음
-                damame += game.Monster.Power;
-                damame -= game.Player.Defense;
-                game.Player.CurHP -= damame;
+                //damame += game.Monster.Power;
+                //damame -= game.Player.Defense;
+                //game.Player.CurHP -= damame;
 
             }
             else if (input == "2")
             {
                 // 서로 맞음 (몬스터가 먼저 맞고 그다음 플레이어가 맞음)
-                damame += game.Player.Power;
-                damame -= game.Monster.Defense;
-                game.Monster.CurHP -= damame;
+                //damame += game.Player.Power;
+                //damame -= game.Monster.Defense;
+                //game.Monster.CurHP -= damame;
 
-                damame += game.Monster.Power;
-                damame -= game.Player.Defense;
-                game.Player.CurHP -= damame;
+                //damame += game.Monster.Power;
+                //damame -= game.Player.Defense;
+                //game.Player.CurHP -= damame;
 
             }
             else if (input == "3")

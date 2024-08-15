@@ -38,9 +38,19 @@ namespace TextRPG.Players
         public int Gold { get { return gold; }  set { gold = value; }  }
 
 
+        protected string skillName;
+        public string SkillName { get { return skillName; } set { skillName = value; } }
 
-        //함수1 - 추상함수 Skill(Monster monster) 스킬 선언!
-        public abstract void Skill(M0_Monster monster);
+
+
+        //함수1 - Skill(Monster monster) 스킬 선언!
+        public string Skill(M0_Monster monster)
+        {
+            int damage = this.power - monster.Defense;
+            monster.CurHP -= damage;
+
+            return skillName;
+        }
 
 
 
