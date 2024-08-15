@@ -1,20 +1,96 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using TextRPG.Players;
 
+// 실제 RPG게임에서처럼,
+// 아이템이 들어오는 순서는 맨 앞부터이나, (맨 위의 맨 왼쪽부터)
+// 아이템 위치를 사용자가 원하는 순서로 뒤바꿀 수 있도록 구현해 보았습니다.
 namespace TextRPG.Scenes
 {
+    public class Item
+    {
+        public string name;
+        public Item(string _name)
+        {
+            name = _name;
+        }
+
+
+    }
+
+
+    public class Inventory
+    {
+        List<Item> items;
+
+        public int itemCount => items.Count;
+
+        public Inventory()
+        {
+            items = new List<Item>(10);
+        }
+
+        public void ShowInventory()
+        {
+
+            if (items.Count == 0)
+            {
+                Console.WriteLine("현재 인벤토리가 비어있습니다.");
+            }
+            else
+            {
+                Console.WriteLine("------- 현재 인벤토리 -------");
+
+                for (int i = 0; i < items.Count; i++)
+                {
+                    Console.WriteLine($" {i + 1}. {items[i].name}");
+                }
+            }
+            Console.WriteLine("==========================");
+            Console.WriteLine();
+        }
+
+        public bool UpdateItem(Item _item)
+        {
+            if (items.Count == 10)
+                return false;
+
+            items.Add(_item);
+            return true;
+        }
+
+        public bool RemoveItem(int _index)
+        {
+            if (items.Count <= _index)
+                return false;
+
+            items.RemoveAt(_index);
+            return true;
+        }
+
+
+    }
+
+
     internal class S5_Inventory : S0_Scene
     {
-        // 필드 - 없음
+        // 필드 - 입력값, 인벤토리, 상태  (인벤구조: 배열or리스트or딕셔너리)
+                
+        string input;
+        Inventory inven;
+
+        public enum MoneyState { MIdle, MGive }
+        MoneyState curState;
 
 
         // 생성자 - 기존 
         public S5_Inventory(Game _game) : base(_game)
         {
-
+            
         }
 
 
@@ -32,22 +108,103 @@ namespace TextRPG.Scenes
 
         }
 
+        // 창고에서의 상황 출력 (인벤토리 내용)
         public override void Render()
         {
-            // 창고에서의 상황 출력 (인벤토리 내용)
+
+            P0_Player player = game.Player;
+            inven = new Inventory();
+
+
+            //기부하기로 마음먹었다면
+            if (curState == MoneyState.MGive)
+            {
+                if (player.Gold >= 100)
+                    player.Gold -= 100;
+                else
+                    player.Gold = 0;
+                
+            }
+
+            Console.Clear();
+
+            // 현재 소지중인 골드
+            Console.WriteLine($"현재 소지금: {player.Gold,+4} Gold\n");
+            Console.WriteLine("==========================");
+            
+            // 인벤토리 나열
+            inven.ShowInventory();
+            Console.WriteLine("");
+
+            // 선택지 제시
+            Console.WriteLine("어떤 동작을 할까요?\n");
+
+            Console.WriteLine("1. 마을로 돌아가기");
+            Console.WriteLine("2. 상점으로 바로가기");
+            Console.WriteLine("3. 기부하기");
+
+            Console.Write("\n선택: ");
+
 
         }
 
+
+        // 인벤토리에서 입력받기
         public override void Input()
         {
-            // 인벤토리에서 입력받기
-
+            input = Console.ReadLine();
         }
 
+
+        // 소지금과 인벤토리 변경사항 처리
         public override void Update()
         {
-            // 인벤토리 처리, 이후엔 마을로 돌아가는 처리
-            game.SceneChanger(SceneType.Town);
+            P0_Player player = game.Player;
+
+            if (input == "1")
+            {
+                Console.WriteLine("\n마을로 돌아갑니다...");
+                Thread.Sleep(1000);
+                game.SceneChanger(SceneType.Town);
+            }
+            else if(input == "2")
+            {
+                Console.WriteLine("\n상점으로 향합니다...");
+                Thread.Sleep(1000);
+                game.SceneChanger(SceneType.Shop);
+            }
+            else if (input == "3")
+            {
+                curState = MoneyState.MGive;
+
+                if (player.Gold >= 100)
+                {                
+                    Console.WriteLine("\n당신은 돈을 바닥에 버렸습니다!!");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("\n소지금이 100원 줄어듭니다.");
+                    Thread.Sleep(1000);
+
+                }
+                else if (player.Gold > 0)
+                {                    
+                    Console.WriteLine("\n당신은 남은 돈을 모두 바닥에 뿌렸습니다!!");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("\n당신은 빈털털이가 되었습니다.");
+                    Thread.Sleep(1000);
+
+                }
+                else
+                {                    
+                    Console.WriteLine("\n기부를 할 수 없습니다.");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("\n(당신의 소지금은 0원입니다..)");
+                    Thread.Sleep(1000);
+                    return;
+
+                }
+
+                
+            }
 
         }
 
