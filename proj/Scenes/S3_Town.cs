@@ -51,12 +51,12 @@ namespace TextRPG.Scenes
             game.Player.PrintAll();
 
             Console.WriteLine("마을에 도착했습니다.");
-            Console.WriteLine("다음엔 어디로 이동할까요?");
+            Console.WriteLine("어디로 이동할까요?\n");
             Console.WriteLine("1. 인벤토리 확인하러 가기");
             Console.WriteLine("2. 상점으로 이동하기");
             Console.WriteLine("3. 훈련장으로 이동하기");
 
-            Console.Write("선택 : ");
+            Console.Write("\n선택 : ");
 
         }
 

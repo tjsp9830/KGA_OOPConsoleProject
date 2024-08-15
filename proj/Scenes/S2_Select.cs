@@ -10,7 +10,7 @@ namespace TextRPG.Scenes
     internal class S2_Select : S0_Scene
     {
         // 필드 - State 열거형 선언{이름,직업,확인}, State 변수 curState 선언, string 인풋, string nameInput
-        public enum State { Name, Job, Confirm }
+        public enum State { Name, Job, Confirm, Ready }
         private State curState;
 
         string input;
@@ -33,12 +33,23 @@ namespace TextRPG.Scenes
 
         public override void Enter()
         {
-            //이름부터 입력받기
+            //이름부터 입력받기 위해 상태를 이름으로 두고 시작
             curState = State.Name;
         }
 
         public override void Render()
         {            
+            if(curState==State.Ready)
+            {
+                Console.Clear();
+                Console.WriteLine("\n사실, 당신은 소속된 국가가 멸망하여");
+                Thread.Sleep(750);
+                Console.WriteLine("\n이 마을에 노예로 팔려온 용사입니다.");
+                Thread.Sleep(750);
+                Console.WriteLine("\n1000골드를 벌어서 이곳을 탈출하세요!");
+                Thread.Sleep(3000);
+
+            }
 
             if (curState == State.Name)
             {
@@ -73,13 +84,19 @@ namespace TextRPG.Scenes
                 Console.WriteLine($"> 소지금: {game.Player.Gold}");                
 
                 Console.Write("-----> 이대로 게임을 시작할까요?(y/n) : ");
+
             }
+
+
 
         }
 
         public override void Input()
         {
-            input = Console.ReadLine();
+            if (curState == State.Ready)
+                return;
+            else
+                input = Console.ReadLine();
         }
 
         public override void Update()
@@ -139,10 +156,10 @@ namespace TextRPG.Scenes
             {
                 switch (input)
                 {
-                    // 게임 시작을 위해 마을씬으로 이동
+                    // 게임시작을 위한 스토리 제시단계
                     case "Y":
                     case "y":
-                        game.SceneChanger(SceneType.Town);
+                        curState = State.Ready;
                         break;
 
                     // 다시 이름부터 입력받음
@@ -154,7 +171,16 @@ namespace TextRPG.Scenes
                 }
 
             }
-              
+            else if (curState == State.Ready)
+            {
+                // 게임 시작을 위해 마을씬으로 이동
+                game.SceneChanger(SceneType.Town);
+
+            }
+
+
+
+
         }
 
         public override void Exit()
