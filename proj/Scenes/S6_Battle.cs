@@ -68,27 +68,29 @@ namespace TextRPG.Scenes
                 game.player.Gold += game.Monster.Gold;
                 Console.WriteLine($"보상으로 {game.Monster.Gold}골드를 얻었다.");
 
-                Console.WriteLine("마을로 돌아가자...");
+                Console.WriteLine("\n마을로 돌아가자...");
                 Thread.Sleep(2000);
-                game.SceneChanger(SceneType.Town);
+                
 
             }
 
             // 예외2 = 플레이어 죽음
             if (curState == State.Dead)
             {
-                Console.SetCursorPosition(5, 10);
+                Console.SetCursorPosition(0, 10);
                 Console.WriteLine("플레이어가 치명상을 입었다.");
-                Console.SetCursorPosition(5, 10);
+                Console.SetCursorPosition(5, 12);
                 Console.WriteLine("G a m e O v e r");
                 Environment.Exit(0);
 
             }
 
-            Console.WriteLine("야생의 몬스터가 나타났다!");
 
             if (curState == State.Idle)
             {
+
+                Console.WriteLine("야생의 몬스터가 나타났다!");
+
                 //플레이어의 체력
                 Console.SetCursorPosition(5, 3);
                 Console.WriteLine($"당신의 체력: {game.Player.CurHP}");
@@ -149,22 +151,26 @@ namespace TextRPG.Scenes
 
 
             }
-            
 
 
+            // 이겼을땐 또 띄울필요 없음
+            if (curState != State.Win)
+            {
+                //플레이어의 체력 표시
+                Console.SetCursorPosition(5, 10);
+                Console.WriteLine($"당신의 체력: {game.Player.CurHP}");
 
-            //플레이어의 체력 표시
-            Console.SetCursorPosition(5, 10);
-            Console.WriteLine($"당신의 체력: {game.Player.CurHP}");
-
-            //몬스터의 체력 표시
-            Console.SetCursorPosition(5, 11);
-            Console.WriteLine($"몬스터의 체력: {game.Monster.CurHP}");
-
+                //몬스터의 체력 표시
+                Console.SetCursorPosition(5, 11);
+                Console.WriteLine($"몬스터의 체력: {game.Monster.CurHP}");
+            }
 
             //예외처리 0 - 일단 끝내고 업데이트로 넘김
             if (game.Monster.CurHP <= 0 || game.Player.CurHP <= 0)
+            {
+                Thread.Sleep(2000);
                 return;
+            }
 
 
             // 행동 선택
@@ -182,7 +188,7 @@ namespace TextRPG.Scenes
         public override void Input()
         {
             // 예외처리
-            if (game.Monster.CurHP <= 0 || game.Player.CurHP <= 0)
+            if (curState == State.Win || game.Monster.CurHP <= 0 || game.Player.CurHP <= 0)
                 return;
 
             // 전투 상황에서의 입력받기
@@ -211,6 +217,10 @@ namespace TextRPG.Scenes
         public override void Update()
         {
             // 예외처리
+
+            // 이겼다면 마을로
+            if(curState == State.Win)
+                game.SceneChanger(SceneType.Town);
 
             // 플레이어의 체력이 0 이하가 되면 ---> 게임이 끝남, 프로그램 종료
             if (game.Player.CurHP <= 0)
