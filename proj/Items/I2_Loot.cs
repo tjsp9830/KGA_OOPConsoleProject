@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TextRPG.Items
 {
+<<<<<<< HEAD
     internal class I2_Loot : I0_Item
     {
         public I2_Loot()
@@ -27,4 +28,9 @@ namespace TextRPG.Items
     }
 
 
+=======
+    internal class I2_Loot
+    {
+    }
+>>>>>>> dc7add0786ae07a5715f5752d39182fa07a25e4f
 }
