@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TextRPG.Monsters;
 using TextRPG.Players;
 using TextRPG.Scenes;
+using TextRPG.Items;
 // 플레이어 클래스 using
 // 씬 클래스 using
 
@@ -28,6 +29,10 @@ namespace TextRPG
         // 클래스형 플레이어(게터세터)
         public P0_Player player;
         public P0_Player Player { get { return player; }  set { player = value; } }
+
+        public Item inventory;
+        public Item Inventory { get { return inventory; }  set { inventory = value; } }
+
 
 
         // 클래스형 몬스터(게터세터) ---> 몬스터 종류 여러개로 늘린 후에는 배열 형태로 바꾸기
@@ -86,7 +91,7 @@ namespace TextRPG
             scenes[(int)SceneType.Select] = new S2_Select(this);
             scenes[(int)SceneType.Town] = new S3_Town(this);
             scenes[(int)SceneType.Shop] = new S4_Shop(this);
-            scenes[(int)SceneType.Inventory] = new S5_Inventory(this);
+            scenes[(int)SceneType.Storage] = new S5_storage(this);
             scenes[(int)SceneType.Battle] = new S6_Battle(this);
             scenes[(int)SceneType.GameOver] = new S7_GameOver(this);
 
