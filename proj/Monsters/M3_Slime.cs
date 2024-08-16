@@ -11,7 +11,7 @@ namespace TextRPG.Monsters
     internal class M3_Slime : M0_Monster
     {
 
-        public M3_Slime()
+        public M3_Slime(Game game) : base(game)
         {
             this.monType = MonsterType.Slime;
             this.name = "슬라임";
@@ -30,12 +30,13 @@ namespace TextRPG.Monsters
                 return;
             else
             {
-                I0_Item item = new I0_Item();
-                item.itemType = ItemType.LootOrc;
+                I0_Item item = new I2_Loot(game, monType);
 
-                //Inventory inven = new Inventory();
+                item.SetItemType(monType);
 
                 //게임에 있는 인스턴스에 넘겨주기
+                game.inventory.UpdateItem(item);
+
             }
 
 

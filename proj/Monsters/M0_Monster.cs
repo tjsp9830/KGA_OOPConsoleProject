@@ -40,6 +40,10 @@ namespace TextRPG.Monsters
         public string SkillName { get { return skillName; }  set { skillName = value; } }
 
 
+        public M0_Monster(Game _game)
+        {
+            game = _game;
+        }
 
         //함수 - Skill(Player player) 스킬 선언!
         public string Skill(P0_Player player)

@@ -12,7 +12,7 @@ namespace TextRPG.Items
     {
         public Game game;
         public ItemType itemType;
-        public MonsterType monType;
+        
 
 
         protected string name; //아이템 이름
@@ -36,37 +36,29 @@ namespace TextRPG.Items
         public string Caption { get { return caption; } set { caption = value; } }
 
 
-        public I0_Item()
+        public I0_Item(Game _game)
         {
-            
+            game = _game;
         }
 
-        public ItemType CreateItem()
+        public void SetItemType(MonsterType type)
         {
             
-            switch (monType)
+            if(type == MonsterType.Orc)
             {
-                case MonsterType.Orc:
-                    return ItemType.LootOrc;
-
-                case MonsterType.Goblin:
-                    return ItemType.LootGoblin;
-
-                case MonsterType.Slime:
-                    return ItemType.LootSlime;
-
-                default:
-                    return ItemType.SIZE;
-
+                //생성로직
             }
+           
+
+
 
         }
 
         public void ShowInventory()
         {
-            I0_Item[] inventory = game.inventory;
+            
 
-            if (inventory.Length == 0)
+            if (game.inventory.slots.Count == 0)
             {
                 Console.WriteLine("현재 인벤토리가 비어있습니다.");
             }
@@ -74,9 +66,9 @@ namespace TextRPG.Items
             {
                 Console.WriteLine("------- 현재 인벤토리 -------");
 
-                for (int i = 0; i < inventory.Count(); i++)
+                for (int i = 0; i < game.inventory.slots.Count; i++)
                 {
-                    Console.WriteLine($" {i + 1}. {inventory[i].name}");
+                    Console.WriteLine($" {i + 1}. {game.inventory.slots[i].name}");
                 }
             }
             Console.WriteLine("==========================");

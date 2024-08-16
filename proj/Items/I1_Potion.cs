@@ -8,7 +8,7 @@ namespace TextRPG.Items
 {
     public class I1_Potion : I0_Item
     {
-        public I1_Potion()
+        public I1_Potion(Game game) : base (game)
         {
             this.itemType = ItemType.Potion;
             this.name = "체력 물약";

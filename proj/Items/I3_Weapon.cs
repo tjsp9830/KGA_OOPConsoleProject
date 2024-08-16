@@ -8,7 +8,7 @@ namespace TextRPG.Items
 {
     public class I3_Weapon : I0_Item
     {
-        public I3_Weapon()
+        public I3_Weapon(Game game) : base(game)
         {
             this.itemType = ItemType.Weapon;
             this.name = "무기";

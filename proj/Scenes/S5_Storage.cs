@@ -50,7 +50,7 @@ namespace TextRPG.Scenes
         {
 
             P0_Player player = game.Player;
-            inven = new I4_Inventory();
+            inven = new I0_Item(game);
 
 
             //기부하기로 마음먹었다면

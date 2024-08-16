@@ -6,8 +6,45 @@ using System.Threading.Tasks;
 
 namespace TextRPG.Items
 {
-    public class I4_Inventory : I0_Item
+    public class I4_Inventory
     {
+
+        public List<I0_Item> slots = new();
+
+        // 획득
+        public void UpdateItem(I0_Item item)
+        {
+            slots.Add(item);
+        }
+
+        // 삭제
+        public void RemoveItem(int index)
+        {
+            slots.RemoveAt(index);
+        }
+
+        // 출력
+        public void ShowInventory()
+        {
+            if (slots.Count == 0)
+            {
+                Console.WriteLine("현재 인벤토리가 비어있습니다.");
+            }
+            else
+            {
+                Console.WriteLine("------- 현재 인벤토리 -------");
+
+                for (int i = 0; i < slots.Count; i++)
+                {
+                    Console.WriteLine($" {i + 1}. {slots[i].Name} ");
+                    //현재는 똑같은 아이템이라도 갯수 중복이 안되는 상태, 추후 (갯수: {}개) 형태로 겹치기
+                }
+            }
+            Console.WriteLine("==========================");
+            Console.WriteLine();
+        }
+
+
 
     }
     //public class Item

@@ -30,8 +30,8 @@ namespace TextRPG
         public P0_Player Player { get { return player; }  set { player = value; } }
 
 
-        // 인벤토리 (아이템 배열)
-        public I0_Item[] inventory;
+        // 인벤토리 (아이템 배열X 인벤토리의 인스턴스O)
+        public I4_Inventory inventory;
         //public I0_Item[] inventorys;
         // 현재 인벤토리
         public I0_Item curInventory;
@@ -104,11 +104,11 @@ namespace TextRPG
             curScene.Enter();
             //----------------------------------------------------------
             monsters = new M0_Monster[3];
-            monsters[(int)MonsterType.Orc] = new M1_Orc();
-            monsters[(int)MonsterType.Goblin] = new M2_Goblin();
-            monsters[(int)MonsterType.Slime] = new M3_Slime();
+            monsters[(int)MonsterType.Orc] = new M1_Orc(this);
+            monsters[(int)MonsterType.Goblin] = new M2_Goblin(this);
+            monsters[(int)MonsterType.Slime] = new M3_Slime(this);
             //----------------------------------------------------------
-            inventory = new I4_Inventory[10];
+            inventory = new I4_Inventory();
 
 
         }

@@ -39,13 +39,13 @@ namespace TextRPG.Scenes
             Thread.Sleep(1000); // 0.15초
             
                         
-            //도착 안내멘트, 몬스터 출현멘트 다 지우고 새로 쓰기.
+            //도착 안내멘트, {game.Monster.Name} 출현멘트 다 지우고 새로 쓰기.
             Console.Clear();
                         
 
             // 전투 시작
             curState = State.Idle;
-            game.Monster = new M1_Orc();
+            game.Monster = new M1_Orc(game);
 
         }
 
@@ -54,6 +54,7 @@ namespace TextRPG.Scenes
         {
 
             P0_Player player = game.Player;
+            //M0_Monster monster = game.Monster;
             M0_Monster monster = game.Monster;
 
 
@@ -64,9 +65,11 @@ namespace TextRPG.Scenes
             if (curState == State.Win)
             {
                 Console.SetCursorPosition(0, 10);
-                Console.WriteLine("플레이어가 몬스터를 무찔렀다!");
+                Console.WriteLine($"플레이어가 {game.Monster.Name}를 무찔렀다!");
                 game.player.Gold += game.Monster.Gold;
                 Console.WriteLine($"보상으로 {game.Monster.Gold}골드를 얻었다.");
+                monster.GiveLoot();
+                Console.WriteLine($"보상으로 전리품을 얻었다.");
 
                 Console.WriteLine("\n마을로 돌아가자...");
                 Thread.Sleep(2000);
@@ -89,15 +92,15 @@ namespace TextRPG.Scenes
             if (curState == State.Idle)
             {
 
-                Console.WriteLine("야생의 몬스터가 나타났다!");
+                Console.WriteLine($"야생의 {game.Monster.Name}가 나타났다!");
 
                 //플레이어의 체력
                 Console.SetCursorPosition(5, 3);
                 Console.WriteLine($"당신의 체력: {game.Player.CurHP}");
 
-                //몬스터의 체력
+                //{game.Monster.Name}의 체력
                 Console.SetCursorPosition(5, 4);
-                Console.WriteLine($"몬스터의 체력: {game.Monster.CurHP}");
+                Console.WriteLine($"{game.Monster.Name}의 체력: {game.Monster.CurHP}");
 
                 //어떤 행동을 할까?
                 Console.SetCursorPosition(0, 7);
@@ -118,7 +121,7 @@ namespace TextRPG.Scenes
 
                 Console.SetCursorPosition(0, 6);
                 Console.WriteLine($"{game.Monster.Skill(player)}");
-                Console.WriteLine("몬스터가 당신을 공격했다...");
+                Console.WriteLine($"{game.Monster.Name}가 당신을 공격했다...");
                 Thread.Sleep(1000);
                                 
 
@@ -127,12 +130,12 @@ namespace TextRPG.Scenes
             {
                 Console.SetCursorPosition(0, 3);
                 Console.WriteLine($"{game.Player.Skill(monster)}");
-                Console.WriteLine("당신은 몬스터를 공격했다.");
+                Console.WriteLine($"당신은 {game.Monster.Name}를 공격했다.");
                 Thread.Sleep(1000);
 
                 Console.SetCursorPosition(0, 6);
                 Console.WriteLine($"{game.Monster.Skill(player)}");
-                Console.WriteLine("몬스터도 당신을 공격했다...");
+                Console.WriteLine($"{game.Monster.Name}도 당신을 공격했다...");
                 Thread.Sleep(1000);
 
                 
@@ -141,12 +144,12 @@ namespace TextRPG.Scenes
             {                
                 Console.SetCursorPosition(0, 3);
                 Console.WriteLine($"{game.Monster.Skill(player)}");
-                Console.WriteLine("몬스터가 당신을 공격했다.");
+                Console.WriteLine($"{game.Monster.Name}가 당신을 공격했다.");
                 Thread.Sleep(1000);
 
                 Console.SetCursorPosition(5, 6);
                 Console.WriteLine("텅 - - - !");
-                Console.WriteLine("당신은 방패로 몬스터에게 반격했다...");
+                Console.WriteLine($"당신은 방패로 {game.Monster.Name}에게 반격했다...");
                 Thread.Sleep(1000);
 
 
@@ -160,9 +163,9 @@ namespace TextRPG.Scenes
                 Console.SetCursorPosition(5, 10);
                 Console.WriteLine($"당신의 체력: {game.Player.CurHP}");
 
-                //몬스터의 체력 표시
+                //{game.Monster.Name}의 체력 표시
                 Console.SetCursorPosition(5, 11);
-                Console.WriteLine($"몬스터의 체력: {game.Monster.CurHP}");
+                Console.WriteLine($"{game.Monster.Name}의 체력: {game.Monster.CurHP}");
             }
 
             //예외처리 0 - 일단 끝내고 업데이트로 넘김
@@ -227,7 +230,7 @@ namespace TextRPG.Scenes
                 curState = State.Dead;
             
 
-            // 몬스터의 체력이 0 이하가 되면 -----> 전투가 끝남, 골드를 얻고 마을로 돌아감
+            // {game.Monster.Name}의 체력이 0 이하가 되면 -----> 전투가 끝남, 골드를 얻고 마을로 돌아감
             if (game.Monster.CurHP <= 0)
                 curState = State.Win;
             
@@ -246,7 +249,7 @@ namespace TextRPG.Scenes
             }
             else if (input == "2")
             {
-                // 서로 맞음 (몬스터가 먼저 맞고 그다음 플레이어가 맞음)
+                // 서로 맞음 ({game.Monster.Name}가 먼저 맞고 그다음 플레이어가 맞음)
                 //damame += game.Player.Power;
                 //damame -= game.Monster.Defense;
                 //game.Monster.CurHP -= damame;
@@ -258,7 +261,7 @@ namespace TextRPG.Scenes
             }
             else if (input == "3")
             {
-                // 몬스터만 맞음
+                // {game.Monster.Name}만 맞음
                 damame += game.Player.Power;
                 damame -= game.Monster.Defense;
                 game.Monster.CurHP -= damame;
