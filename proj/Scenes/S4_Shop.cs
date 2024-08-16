@@ -14,6 +14,7 @@ namespace TextRPG.Scenes
         public Game game;
         public string input;
         public int money;
+        public bool isPurchasing;
 
         // 생성자 - 기존
         public S4_Shop(Game _game) : base(_game)
@@ -76,23 +77,30 @@ namespace TextRPG.Scenes
             Console.WriteLine($"\n당신의 소지 금액: {game.player.Gold}");
             Thread.Sleep(500);
 
-            Console.WriteLine("\n\n어떤 행동을 취할까?");
-            Thread.Sleep(500);
+            if (isPurchasing == true)
+            {
+                Console.WriteLine("\n\n구매하고 싶은 항목을 선택하자.");
+                Console.Write("\n---> 고르기: ");
+            }
+            else
+            {
+                Console.WriteLine("\n\n어떤 행동을 취할까?");
+                Thread.Sleep(500);
 
-            Console.WriteLine("> 1. 가지고 있는 물건 모두 판매하기");
-            // 선택1. 판매 > 전부 판매하기 > 아이템 삭제, 돈 들어옴
-            Console.WriteLine("> 2. 진열되어 있는 물건 구매하기");
-            // 선택2. 구매 > 원하는 번호 입력 > 아이템 추가, 돈 빠져나감
-            Console.WriteLine("> 3. 진열되어 있는 물건 훔쳐가기");
-            // 선택3. 페이크
-            Console.WriteLine("> 4. 마을로 돌아가기");
-            // 선택4. 마을로 돌아가기
-            Console.WriteLine("> 5. 창고로 돌아가기");
-            // 선택5. 창고로 돌아가기
-            Thread.Sleep(500);
+                Console.WriteLine("> 1. 가지고 있는 물건 모두 판매하기");
+                // 선택1. 판매 > 전부 판매하기 > 아이템 삭제, 돈 들어옴
+                Console.WriteLine("> 2. 진열되어 있는 물건 구매하기");
+                // 선택2. 구매 > 원하는 번호 입력 > 아이템 추가, 돈 빠져나감
+                Console.WriteLine("> 3. 진열되어 있는 물건 훔쳐가기");
+                // 선택3. 페이크
+                Console.WriteLine("> 4. 마을로 돌아가기");
+                // 선택4. 마을로 돌아가기
+                Console.WriteLine("> 5. 창고로 돌아가기");
+                // 선택5. 창고로 돌아가기
+                Thread.Sleep(500);
 
-            Console.Write("\n---> 당신의 선택: ");
-
+                Console.Write("\n---> 당신의 선택: ");
+            }
 
 
 
@@ -109,75 +117,167 @@ namespace TextRPG.Scenes
         public override void Update()
         {
 
-            //물건 판매
-            if(input == "1")
-            {                
-                if (game.inventory.slots.Count == 0)
+            //물건 구매중일때만
+            if (isPurchasing)
+            {
+                switch (input)
                 {
-                    Console.WriteLine("\n판매할 수 있는 물건이 아직 없다.");
-                    Thread.Sleep(2000);
-                    return;
-                }
-                else
-                {
-                    //보여주고
-                    game.inventory.ShowInventory();
-                    Thread.Sleep(1000);
+                    case "1":
+                        game.inventory.UpdateItem(game.shopItems[0]); //1번 항목 (배열의 0번째) 인벤토리에 넣기
+                        game.player.Gold -= game.shopItems[0].Value_gold; //돈 빼기
+                        Console.WriteLine("\n아이템 구매가 완료되었다!");
+                        Thread.Sleep(2000);
+                        isPurchasing = false;
+                        break;
 
-                    //삭제하고
-                    int totalPrise = 0;
-                    Console.WriteLine("위 아이템이 모두 판매되었습니다.");
-                    for (int i = game.inventory.slots.Count-1; i >= 0 ; i--)
+                    case "2":
+                        game.inventory.UpdateItem(game.shopItems[1]);
+                        game.player.Gold -= game.shopItems[1].Value_gold;
+                        Console.WriteLine("\n아이템 구매가 완료되었다!");
+                        Thread.Sleep(2000);
+                        isPurchasing = false;
+                        break;
+
+                    case "3":
+                        game.inventory.UpdateItem(game.shopItems[2]);
+                        game.player.Gold -= game.shopItems[2].Value_gold;
+                        Console.WriteLine("\n아이템 구매가 완료되었다!");
+                        Thread.Sleep(2000);
+                        isPurchasing = false;
+                        break;
+
+                    case "4":
+                        game.inventory.UpdateItem(game.shopItems[3]);
+                        game.player.Gold -= game.shopItems[3].Value_gold;
+                        Console.WriteLine("\n아이템 구매가 완료되었다!");
+                        Thread.Sleep(2000);
+                        isPurchasing = false;
+                        break;
+
+                    case "5":
+                        game.inventory.UpdateItem(game.shopItems[4]);
+                        game.player.Gold -= game.shopItems[4].Value_gold;
+                        Console.WriteLine("\n아이템 구매가 완료되었다!");
+                        Thread.Sleep(2000);
+                        isPurchasing = false;
+                        break;
+
+                    case "6":
+                        game.inventory.UpdateItem(game.shopItems[5]);
+                        game.player.Gold -= game.shopItems[5].Value_gold;
+                        Console.WriteLine("\n아이템 구매가 완료되었다!");
+                        Thread.Sleep(2000);
+                        isPurchasing = false;
+                        break;
+
+                    case "7":
+                        game.inventory.UpdateItem(game.shopItems[6]);
+                        game.player.Gold -= game.shopItems[6].Value_gold;
+                        Console.WriteLine("\n아이템 구매가 완료되었다!");
+                        Thread.Sleep(2000);
+                        isPurchasing = false;
+                        break;
+
+                    case "8":
+                        game.inventory.UpdateItem(game.shopItems[7]);
+                        game.player.Gold -= game.shopItems[7].Value_gold;
+                        Console.WriteLine("\n아이템 구매가 완료되었다!");
+                        Thread.Sleep(2000);
+                        isPurchasing = false;
+                        break;
+
+                    case "9":
+                        game.inventory.UpdateItem(game.shopItems[8]);
+                        game.player.Gold -= game.shopItems[8].Value_gold;
+                        Console.WriteLine("\n아이템 구매가 완료되었다!");
+                        Thread.Sleep(2000);
+                        isPurchasing = false;
+                        break;
+
+                    case "10":
+                        game.inventory.UpdateItem(game.shopItems[9]);
+                        game.player.Gold -= game.shopItems[9].Value_gold;
+                        Console.WriteLine("\n아이템 구매가 완료되었다!");
+                        Thread.Sleep(2000);
+                        isPurchasing = false;
+                        break;
+
+                }
+
+            }
+
+            //물건을 구매중이지 않을 때
+            else
+            {
+                //물건 판매
+                if (input == "1")
+                {
+                    if (game.inventory.slots.Count == 0)
                     {
-                        totalPrise += game.inventory.slots[i].Value_gold;
-                        game.inventory.RemoveItem(i);
+                        Console.WriteLine("\n판매할 수 있는 물건이 아직 없다.");
+                        Thread.Sleep(2000);
+                        return;
                     }
-                    Thread.Sleep(2000);
+                    else
+                    {
+                        //보여주고
+                        game.inventory.ShowInventory();
+                        Thread.Sleep(1000);
 
-                    //돈 들어오고
-                    Console.WriteLine($"당신은 판매 수익으로 {totalPrise}골드를 얻었다.");
-                    game.player.Gold += totalPrise;                    
-                    Thread.Sleep(2000);
-                    
-                    //단, 토탈값 반환에서
-                    // 돈을 플레이어한테 직접 넣기보단, 돈 정보를 샵이 들고있는쪽이 나을거같다고 하심
+                        //삭제하고
+                        int totalPrise = 0;
+                        Console.WriteLine("위 아이템이 모두 판매되었습니다.");
+                        for (int i = game.inventory.slots.Count - 1; i >= 0; i--)
+                        {
+                            totalPrise += game.inventory.slots[i].Value_gold;
+                            game.inventory.RemoveItem(i);
+                        }
+                        Thread.Sleep(2000);
+
+                        //돈 들어오고
+                        Console.WriteLine($"당신은 판매 수익으로 {totalPrise}골드를 얻었다.");
+                        game.player.Gold += totalPrise;
+                        Thread.Sleep(2000);
+
+                        //단, 토탈값 반환에서
+                        // 돈을 플레이어한테 직접 넣기보단, 돈 정보를 샵이 들고있는쪽이 나을거같다고 하심
+
+                    }
+                }
+                //물건 구매 시도
+                else if (input == "2")
+                {
+                    //한번 더 인풋 받기위해 bool true로 바꿔주고 끝내기                
+                    isPurchasing = true;
+                    return;
 
                 }
-            }
-            //물건 구매
-            else if (input == "2")
-            {
-                Console.WriteLine("\n물건 구매항목 테스트문구");
-                Thread.Sleep(2000);
-                
+                // 페이크
+                else if (input == "3")
+                {
+                    Console.WriteLine("\n\' 양심적으로 삽시다!! \'");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("마음의 소리에 놀란 당신은 물건을 훔치지 않기로 했다.");
+                    Thread.Sleep(2000);
 
-                Thread.Sleep(2000);
-            }
-            // 페이크
-            else if (input == "3")
-            {
-                Console.WriteLine("\n\' 양심적으로 삽시다!! \'");
-                Thread.Sleep(1000);
-                Console.WriteLine("마음의 소리에 놀란 당신은 물건을 훔치지 않기로 했다.");
-                Thread.Sleep(2000);
+                }
+                //마을로 이동
+                else if (input == "4")
+                {
+                    Console.WriteLine("마을로 돌아갑니다...");
+                    Thread.Sleep(2000);
+                    game.SceneChanger(SceneType.Town);
+                }
+                //창고로 이동
+                else if (input == "5")
+                {
+                    Console.WriteLine("창고로 돌아갑니다...");
+                    Thread.Sleep(2000);
+                    game.SceneChanger(SceneType.Storage);
+                }
+
 
             }
-            //마을로 이동
-            else if (input == "4")
-            {
-                Console.WriteLine("마을로 돌아갑니다...");
-                Thread.Sleep(2000);
-                game.SceneChanger(SceneType.Town);
-            }
-            //창고로 이동
-            else if (input == "5")
-            {
-                Console.WriteLine("창고로 돌아갑니다...");
-                Thread.Sleep(2000);
-                game.SceneChanger(SceneType.Storage);
-            }
-            
-
         }
 
         public override void Exit()
