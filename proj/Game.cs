@@ -32,17 +32,18 @@ namespace TextRPG
 
         // 인벤토리 (아이템 배열X 인벤토리의 인스턴스O)
         public I4_Inventory inventory;
-        //public I0_Item[] inventorys;
-        // 현재 인벤토리
-        public I0_Item curInventory;
-        public I0_Item CurInventory { get { return curInventory; }  set { curInventory = value; } }
-
 
 
         // 클래스형 몬스터(게터세터) ---> 몬스터 종류 여러개로 늘린 후에는 배열 형태로 바꾸기
         private M0_Monster[] monsters;
         private M0_Monster monster;
         public M0_Monster Monster { get { return monster; }  set { monster = value; } }
+
+
+        // 상점 진열품 배열
+        public I0_Item[] shopItems;
+        //private I0_Item curShopItem;
+        //public I0_Item CurShopItem { get { return curShopItem; } set { curShopItem = value; } }
 
 
 
@@ -109,7 +110,18 @@ namespace TextRPG
             monsters[(int)MonsterType.Slime] = new M3_Slime(this);
             //----------------------------------------------------------
             inventory = new I4_Inventory();
-
+            //----------------------------------------------------------
+            shopItems = new I0_Item[10];            
+            shopItems[0] = new I1_Potion(this, "소형물약"); //소형포션, 모두 구매 가능, 구매해도 삭제X
+            shopItems[1] = new I1_Potion(this, "대형물약"); //대형포션, 모두 구매 가능, 구매해도 삭제X
+            shopItems[2] = new I3_Equipment(this, "투구"); //투구, 모두 구매 가능, 구매시 삭제처리
+            shopItems[3] = new I3_Equipment(this, "갑옷"); //갑옷, 모두 구매 가능, 구매시 삭제처리
+            shopItems[4] = new I3_Equipment(this, "장갑"); //장갑, 모두 구매 가능, 구매시 삭제처리
+            shopItems[5] = new I3_Equipment(this, "신발"); //신발, 모두 구매 가능, 구매시 삭제처리
+            shopItems[6] = new I3_Weapon(this, Job.Warrior); //대검, 전사만 구매 가능, 구매시 삭제처리
+            shopItems[7] = new I3_Weapon(this, Job.Mage); //완드, 법사만 구매 가능, 구매시 삭제처리
+            shopItems[8] = new I3_Weapon(this, Job.Rogue); //대거, 로그만 구매 가능, 구매시 삭제처리
+            shopItems[9] = new I3_Weapon(this, Job.Archor); //보우, 아처만 구매 가능, 구매시 삭제처리
 
         }
 

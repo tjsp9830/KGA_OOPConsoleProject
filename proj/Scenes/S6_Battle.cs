@@ -45,17 +45,18 @@ namespace TextRPG.Scenes
 
             // 전투 시작
             curState = State.Idle;
-            game.Monster = new M1_Orc(game);
+            //game.Monster = new M1_Orc(game);
+            game.Monster = new M2_Goblin(game);
+            //game.Monster = new M3_Slime(game);
 
         }
 
-
+        
         public override void Render()
         {
 
             P0_Player player = game.Player;
-            //M0_Monster monster = game.Monster;
-            M0_Monster monster = game.Monster;
+            M0_Monster monster = game.Monster;            
 
 
             Console.Clear();
