@@ -4,16 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TextRPG.Players;
+using TextRPG.Items;
 
 namespace TextRPG.Monsters
 {
     //몬스터 클래스의 부모 클래스
-    public class M0_Monster //abstract클래스, 가상함수 사용
+    public abstract class M0_Monster //abstract클래스, 가상함수 사용
     {
         //필드 - 이름, 체력, 공격력, 방어력
+        protected Game game;
+        public MonsterType monType;
+
 
         protected string name;
         public string Name { get { return name; } }
+
 
         protected int curHP;
         public int CurHP { get { return curHP; } set { curHP = value; } }
@@ -30,6 +35,7 @@ namespace TextRPG.Monsters
         protected int gold;
         public int Gold { get { return gold; } }
 
+
         protected string skillName;
         public string SkillName { get { return skillName; }  set { skillName = value; } }
 
@@ -43,6 +49,8 @@ namespace TextRPG.Monsters
 
             return skillName;
         }
+
+        public abstract void GiveLoot();
 
         // 팩토리 패턴으로 다양한 몬스터 구현 시도
         // 이때, 몬스터의 비슷한 특징은 인터페이스로 관리하기

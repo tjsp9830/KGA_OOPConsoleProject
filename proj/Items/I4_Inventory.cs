@@ -6,70 +6,62 @@ using System.Threading.Tasks;
 
 namespace TextRPG.Items
 {
-    public class I4_Inventory
+    public class I4_Inventory : I0_Item
     {
-        public string name;
-        public I4_Inventory(string _name)
-        {
-            name = _name;
-        }
-
 
     }
+    //public class Item
+    //{
+    //    List<I4_Inventory> items;
+
+    //    public int itemCount => items.Count;
+
+    //    public Item()
+    //    {
+    //        items = new List<I4_Inventory>(10);
+    //    }
 
 
-    public class Inventory
-    {
-        List<I4_Inventory> items;
+    //    public void ShowInventory()
+    //    {
 
-        public int itemCount => items.Count;
+    //        if (items.Count == 0)
+    //        {
+    //            Console.WriteLine("현재 인벤토리가 비어있습니다.");
+    //        }
+    //        else
+    //        {
+    //            Console.WriteLine("------- 현재 인벤토리 -------");
 
-        public Inventory()
-        {
-            items = new List<I4_Inventory>(10);
-        }
+    //            for (int i = 0; i < items.Count; i++)
+    //            {
+    //                Console.WriteLine($" {i + 1}. {items[i].name}");
+    //            }
+    //        }
+    //        Console.WriteLine("==========================");
+    //        Console.WriteLine();
+    //    }
 
+    //    public bool UpdateItem(I4_Inventory _item)
+    //    {
+    //        if (items.Count == 10)
+    //            return false;
 
-        public void ShowInventory()
-        {
+    //        items.Add(_item);
+    //        return true;
+    //    }
 
-            if (items.Count == 0)
-            {
-                Console.WriteLine("현재 인벤토리가 비어있습니다.");
-            }
-            else
-            {
-                Console.WriteLine("------- 현재 인벤토리 -------");
+    //    public bool RemoveItem(int _index)
+    //    {
+    //        if (items.Count <= _index)
+    //            return false;
 
-                for (int i = 0; i < items.Count; i++)
-                {
-                    Console.WriteLine($" {i + 1}. {items[i].name}");
-                }
-            }
-            Console.WriteLine("==========================");
-            Console.WriteLine();
-        }
-
-        public bool UpdateItem(I4_Inventory _item)
-        {
-            if (items.Count == 10)
-                return false;
-
-            items.Add(_item);
-            return true;
-        }
-
-        public bool RemoveItem(int _index)
-        {
-            if (items.Count <= _index)
-                return false;
-
-            items.RemoveAt(_index);
-            return true;
-        }
+    //        items.RemoveAt(_index);
+    //        return true;
+    //    }
 
 
-    }
+    //}
 
 
 }

@@ -6,21 +6,18 @@ using System.Threading.Tasks;
 
 namespace TextRPG.Items
 {
-    internal class I1_Potion : I0_Item
+    public class I1_Potion : I0_Item
     {
         public I1_Potion()
         {
+            this.itemType = ItemType.Potion;
             this.name = "체력 물약";
             this.value_heal = 50;
             this.value_gold = 50;
-            this.caption = "물약";
+            this.caption = "사용자의 체력을 50 회복시켜주는 물약이다.";
 
         }
 
-        public override void ItemCaption()
-        {
-
-        }
 
     }
 

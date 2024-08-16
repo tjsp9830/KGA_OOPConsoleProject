@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TextRPG.Items;
 using TextRPG.Monsters;
 using TextRPG.Players;
 using TextRPG.Scenes;
-using TextRPG.Items;
-// 플레이어 클래스 using
-// 씬 클래스 using
+
 
 namespace TextRPG
 {
@@ -30,12 +29,18 @@ namespace TextRPG
         public P0_Player player;
         public P0_Player Player { get { return player; }  set { player = value; } }
 
-        public Item inventory;
-        public Item Inventory { get { return inventory; }  set { inventory = value; } }
+
+        // 인벤토리 (아이템 배열)
+        public I0_Item[] inventory;
+        //public I0_Item[] inventorys;
+        // 현재 인벤토리
+        public I0_Item curInventory;
+        public I0_Item CurInventory { get { return curInventory; }  set { curInventory = value; } }
 
 
 
         // 클래스형 몬스터(게터세터) ---> 몬스터 종류 여러개로 늘린 후에는 배열 형태로 바꾸기
+        private M0_Monster[] monsters;
         private M0_Monster monster;
         public M0_Monster Monster { get { return monster; }  set { monster = value; } }
 
@@ -85,7 +90,7 @@ namespace TextRPG
         public void Start()
         {
             isRunning = true;
-
+            //----------------------------------------------------------
             scenes = new S0_Scene[(int)SceneType.SIZE];
             scenes[(int)SceneType.Title] = new S1_Title(this);
             scenes[(int)SceneType.Select] = new S2_Select(this);
@@ -97,6 +102,14 @@ namespace TextRPG
 
             curScene = scenes[(int)SceneType.Title];
             curScene.Enter();
+            //----------------------------------------------------------
+            monsters = new M0_Monster[3];
+            monsters[(int)MonsterType.Orc] = new M1_Orc();
+            monsters[(int)MonsterType.Goblin] = new M2_Goblin();
+            monsters[(int)MonsterType.Slime] = new M3_Slime();
+            //----------------------------------------------------------
+            inventory = new I4_Inventory[10];
+
 
         }
 

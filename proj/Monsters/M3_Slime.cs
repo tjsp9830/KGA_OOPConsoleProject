@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TextRPG.Items;
 using TextRPG.Players;
 
 namespace TextRPG.Monsters
@@ -12,6 +13,7 @@ namespace TextRPG.Monsters
 
         public M3_Slime()
         {
+            this.monType = MonsterType.Slime;
             this.name = "슬라임";
             this.curHP = 150;
             this.maxHP = curHP;
@@ -19,6 +21,24 @@ namespace TextRPG.Monsters
             this.defense = 0;
             this.gold = 300;
             this.skillName = "\"녹여버리기!!\"";
+        }
+
+        public override void GiveLoot()
+        {
+            //예외처리
+            if (this.curHP > 0)
+                return;
+            else
+            {
+                I0_Item item = new I0_Item();
+                item.itemType = ItemType.LootOrc;
+
+                //Inventory inven = new Inventory();
+
+                //게임에 있는 인스턴스에 넘겨주기
+            }
+
+
         }
 
     }

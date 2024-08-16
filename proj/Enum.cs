@@ -14,5 +14,9 @@ namespace TextRPG
     // 사용될 플레이어 클래스의 유형
     public enum Job { Warrior=1, Mage, Rogue, Archor, SIZE };
 
-        
+    // 사용될 몬스터 클래스의 유형
+    public enum MonsterType { Orc, Goblin, Slime, SIZE };
+
+    public enum ItemType { Potion, LootOrc, LootGoblin, LootSlime, Equipment, Weapon, SIZE }
+
 }

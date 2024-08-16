@@ -73,7 +73,7 @@ namespace TextRPG.Scenes
 
                 case "1":
                 case "d":
-                    game.SceneChanger(SceneType.Inventory);
+                    game.SceneChanger(SceneType.Storage);
                     break;
 
                 case "2":
