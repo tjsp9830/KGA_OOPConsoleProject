@@ -9,7 +9,7 @@ namespace TextRPG.Players
 {
     internal class P4_Archor : P0_Player
     {
-        // 4. 궁수: 생성자(인수:이름) 피통08, 공3 방4.  override함수 Skill(Monster monster)은 아직 미구현
+        // 4. 궁수: 생성자(인수:이름) 피통08, 공3 방4.
 
         public P4_Archor(string _name)
         {
@@ -19,7 +19,7 @@ namespace TextRPG.Players
             this.maxHP = curHP;
             this.power = 30;
             this.defense = 40;
-            this.gold = 0;
+            this.gold = 100;
             this.skillName = "\"폭풍의 화살\"";
 
         }

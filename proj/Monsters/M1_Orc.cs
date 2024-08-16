@@ -17,7 +17,7 @@ namespace TextRPG.Monsters
             this.curHP = 100;
             this.maxHP = curHP;
             this.power = 35;
-            this.defense = 15;
+            this.defense = 5;
             this.gold = 50;
             this.skillName = "\"아프게때리기!!\"";
         }

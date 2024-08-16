@@ -17,6 +17,8 @@ namespace TextRPG
     // 사용될 몬스터 클래스의 유형
     public enum MonsterType { Orc, Goblin, Slime, SIZE };
 
+    // 아이템의 타입
     public enum ItemType { Potion, LootOrc, LootGoblin, LootSlime, Equipment, Weapon, SIZE }
+
 
 }

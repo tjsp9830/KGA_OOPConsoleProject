@@ -21,13 +21,13 @@ namespace TextRPG.Items
             else if (type == MonsterType.Goblin)
             {
                 this.name = "전리품: 활과 화살";
-                this.value_gold = 500;
+                this.value_gold = 200;
                 this.caption = "고블린이 쏘아 맞추던 활과 화살이다.";
             }
             else if (type == MonsterType.Slime)
             {
                 this.name = "전리품: 금덩이";
-                this.value_gold = 700;
+                this.value_gold = 300;
                 this.caption = "슬라임에게서 미처 소화되지 못한채 발견된 금덩어리이다.";
             }
 

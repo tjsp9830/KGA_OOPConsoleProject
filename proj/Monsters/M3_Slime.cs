@@ -17,8 +17,8 @@ namespace TextRPG.Monsters
             this.name = "슬라임";
             this.curHP = 150;
             this.maxHP = curHP;
-            this.power = 70;
-            this.defense = 0;
+            this.power = 85;
+            this.defense = 35;
             this.gold = 300;
             this.skillName = "\"녹여버리기!!\"";
         }

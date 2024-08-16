@@ -17,7 +17,7 @@ namespace TextRPG.Monsters
             this.name = "고블린";
             this.curHP = 200;
             this.maxHP = curHP;
-            this.power = 50;
+            this.power = 60;
             this.defense = 20;
             this.gold = 150;
             this.skillName = "\"인중에 화살 맞추기!!\"";

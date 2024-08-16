@@ -9,7 +9,7 @@ namespace TextRPG.Players
 {
     internal class P2_Mage : P0_Player
     {
-        // 2. 법사: 생성자(인수:이름) 피통06, 공5 방1.  override함수 Skill(Monster monster)은 아직 미구현
+        // 2. 법사: 생성자(인수:이름) 피통06, 공5 방1.
 
         public P2_Mage(string _name)
         {
@@ -19,7 +19,7 @@ namespace TextRPG.Players
             this.maxHP = curHP;
             this.power = 50;
             this.defense = 10;
-            this.gold = 0;
+            this.gold = 400;
             this.skillName = "\"파이어볼\"";
 
         }

@@ -17,6 +17,12 @@ namespace TextRPG.Items
             slots.Add(item);
         }
 
+        public void RemoveAllItem()
+        {
+            slots.Clear();
+            //slots.RemoveAll();
+        }
+
         // 삭제
         public void RemoveItem(int index)
         {

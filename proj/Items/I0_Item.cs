@@ -36,11 +36,14 @@ namespace TextRPG.Items
         public string Caption { get { return caption; } set { caption = value; } }
 
 
+        // 게임 인스턴트 가져오기
         public I0_Item(Game _game)
         {
             game = _game;
         }
 
+
+        // 몬스터 처치시, 몬스터의 유형에 맞는 아이템이 생성되게 하는 함수
         public void SetItemType(MonsterType type)
         {
             
@@ -48,12 +51,22 @@ namespace TextRPG.Items
             {
                 //생성로직
             }
-           
+            else if (type == MonsterType.Goblin)
+            {
+                //생성로직
+            }
+            else if (type == MonsterType.Slime)
+            {
+                //생성로직
+            }
+
 
 
 
         }
 
+
+        // 플레이어의 인벤토리를 전부 출력하는 함수
         public void ShowInventory()
         {
             
@@ -75,11 +88,21 @@ namespace TextRPG.Items
             Console.WriteLine();
         }
 
+
+        // 상점에 진열된 품목을 전부 출력하는 함수
+        public void ItemsOnDisplay()
+        {
+
+        }
+
+
         // 아이템의 설명을 적을 함수
         public void ReadItemCaption()
         {
             Console.Write(this.caption);
         }
+
+
 
     }
 
